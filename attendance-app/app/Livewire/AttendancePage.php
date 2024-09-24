@@ -22,6 +22,9 @@ class AttendancePage extends Component
                 "title" => "Système d'exploitation"
             ]
         ];
-        return view('livewire.attendance-page');
+        // dd($courses);
+        return view('livewire.attendance-page', [
+            "courses" => $courses,
+        ]);
     }
 }
