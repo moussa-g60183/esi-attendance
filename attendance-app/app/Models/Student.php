@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Etudiant extends Model
+class Student extends Model
 {
+    use HasFactory;
     protected $primaryKey = 'matricule';
     public $incrementing = false;
     protected $keyType = 'string';
-
+    public $timestamps = false;
     protected $fillable = [
-        'matricule', 'nom', 'prenom'
+        'matricule', 'first_name', 'last_name'
     ];
 
-    public function cours()
+    public function courses()
     {
-        return $this->belongsToMany(Cours::class, 'cours_etudiants', 'etudiant_matricule', 'cours_sigle');
+        return $this->belongsToMany(Course::class, 'courses_students', 'student_matricule', 'course_sigle');
     }
 }

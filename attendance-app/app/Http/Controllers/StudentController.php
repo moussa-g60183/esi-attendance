@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Etudiant;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class EtudiantController extends Controller
+class StudentController extends Controller
 {
    public function getAllStudents(){
-    $etudiants = Etudiant::all();
-    return response()->json($etudiants);
+    $Students = Student::all();
+    return response()->json($Students);
    }
 
    public function show($matricule){
-    $etudiant = Etudiant::find($matricule);
-    return response()->json($etudiant);
+    $Student = Student::find($matricule);
+    return response()->json($Student);
    }
 
 }

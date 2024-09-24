@@ -11,7 +11,7 @@ class Course extends Model
     protected $primaryKey = 'sigle';
     public $incrementing = false;
     protected $keyType = 'string';
-
+    public $timestamps = false;
     protected $fillable = [
         'sigle', 'title'
     ];
@@ -19,6 +19,6 @@ class Course extends Model
     // Relation Many-to-Many
     public function students()
     {
-        return $this->belongsToMany(Etudiant::class, 'courses_students', 'course_sigle', 'student_matricule');
+        return $this->belongsToMany(Student::class, 'courses_students', 'course_sigle', 'student_matricule');
     }
 }

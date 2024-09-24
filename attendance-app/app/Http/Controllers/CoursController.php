@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cours;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
-class CoursController extends Controller
+class CourseController extends Controller
 {
  
      public function students($sigle)
      {
-         $cours = Cours::where('sigle', $sigle)->firstOrFail();
+         $Course = Course::where('sigle', $sigle)->firstOrFail();
 
-         $etudiants = $cours->etudiants;
+         $students = $Course->students;
  
 
-         return response()->json($etudiants);
+         return response()->json($studentss);
      }
 
-     public function courses(){
-        $cours = Cours::all();
+     public function Coursees(){
+        $Course = Course::all();
 
-        return response()->json($cours);
+        return response()->json($Course);
      }
 
 }
