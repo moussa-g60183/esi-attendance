@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cours extends Model
+class Course extends Model
 {
     use HasFactory;
     protected $primaryKey = 'sigle';
@@ -17,8 +17,8 @@ class Cours extends Model
     ];
 
     // Relation Many-to-Many
-    public function etudiants()
+    public function students()
     {
-        return $this->belongsToMany(Etudiant::class, 'cours_etudiants', 'cours_sigle', 'etudiant_matricule');
+        return $this->belongsToMany(Etudiant::class, 'courses_students', 'course_sigle', 'student_matricule');
     }
 }
