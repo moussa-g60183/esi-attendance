@@ -4,10 +4,15 @@
 @endassets
 
 <div>
-    <select wire:model.blur="selectedValue" name="course" id="course">
+    <select wire:model.change="selectedValue" name="course" id="course">
         <option value="">-- Sélectionner un cours --</option>
         @foreach ($courses as $course)
             <option value="{{ $course['sigle'] }}">{{ $course['title'] }}</option>
         @endforeach
     </select>
+    @if ($data)
+        @foreach ($data as $item)
+            {{ $item['matricule'] }}
+        @endforeach
+    @endif
 </div>

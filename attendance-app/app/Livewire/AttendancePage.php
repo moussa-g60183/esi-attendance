@@ -2,8 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Models\Course;
+use App\Models\Student;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Component;
 use Livewire\Attributes\Title;
+
 
 class AttendancePage extends Component
 {
@@ -12,28 +16,12 @@ class AttendancePage extends Component
 
     public $selectedValue;
     public $data;
-    public $students = [
-        ["matricule" => "60534", "first_name" => "Gilles", "last_name" => "Chalon", "courses" => ["WEB5", "PRJ5"]],
-        ["matricule" => "60183", "first_name" => "Moussa", "last_name" => "", "courses" => ["PRJ5", "SYS5"]]
-    ];
 
     public function render()
     {
-        $courses = [
-            [
-                "sigle" => "PRJ5",
-                "title" => "Gestion de projet"
-            ],
-            [
-                "sigle" => "WEB5",
-                "title" => "Développement Web"
-            ],
-            [
-                "sigle" => "SYS5",
-                "title" => "Système d'exploitation"
-            ]
-        ];
-        // dd($courses);
+        // Course::factory()->count(10)->create();
+        // Student::factory()->count(10)->create();
+        $courses = Course::all();
         return view('livewire.attendance-page', [
             "courses" => $courses,
         ]);
@@ -43,6 +31,8 @@ class AttendancePage extends Component
 
     public function updatedSelectedValue($value)
     {
-        // $this->data = Student::query
+        $this->data = Student::whereHas('courses', function ($query) use ($value) {
+            $query->where('sigle', $value);
+        })->get();
     }
 }
