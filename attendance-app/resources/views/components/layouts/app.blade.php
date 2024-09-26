@@ -5,12 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="./node_modules/preline/dist/preline.js"></script>
+    @vite('resources/css/app.css')
     <title>{{ $title ?? 'Page Title' }}</title>
 </head>
 
-<body>
+<body class="bg-slate-100">
     <header>
-        <h1>ESI Attendance</h1>
+        <h1 class="text-6xl bg-blue-500 text-white py-4 px-4">ESI Attendance</h1>
     </header>
     <nav></nav>
     <main>
