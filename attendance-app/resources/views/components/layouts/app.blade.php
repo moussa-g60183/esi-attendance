@@ -9,7 +9,13 @@
 </head>
 
 <body>
-    {{ $slot }}
+    <header>
+        <h1>ESI Attendance</h1>
+    </header>
+    <nav></nav>
+    <main>
+        {{ $slot }}
+    </main>
 </body>
 
 </html>
