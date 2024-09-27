@@ -15,7 +15,7 @@ class CourseController extends Controller
          $students = $Course->students;
  
 
-         return response()->json($studentss);
+         return response()->json($students);
      }
 
      public function Coursees(){

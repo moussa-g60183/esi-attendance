@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Exception;
 class Student extends Model
 {
     use HasFactory;
@@ -15,6 +15,15 @@ class Student extends Model
     protected $fillable = [
         'matricule', 'first_name', 'last_name'
     ];
+
+    public function setMatriculeAttribute($value)
+    {
+        if ($value < 0) {
+            throw new Exception('Le matricule ne peut pas être négatif.');
+        }
+
+        $this->attributes['matricule'] = $value;
+    }
 
     public function courses()
     {
