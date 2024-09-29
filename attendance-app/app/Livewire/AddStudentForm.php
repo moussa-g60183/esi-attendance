@@ -25,7 +25,7 @@ class AddStudentForm extends Component
         $student = Student::findOrFail($this->student_id);
         $course = Course::findOrFail($this->course_id);
         $course->students()->attach($student);
-        $this->dispatch('student-added');
+        $this->dispatch('student-updated');
         $this->student_id = null;
     }
 

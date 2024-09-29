@@ -33,7 +33,7 @@ class AttendancePage extends Component
      * @param mixed $value Selected value of the select element
      * @return void
      */
-    #[On('student-added')]
+    #[On('student-updated')]
     public function updatedSelectedValue()
     {
         $this->data = Student::whereHas('courses', function ($query) {
@@ -51,6 +51,7 @@ class AttendancePage extends Component
         $student = Student::findOrFail($matricule);
         $course = Course::findOrFail($this->selectedValue);
         $course->students()->detach($student);
+        $this->dispatch('student-updated');
     }
 
     #[On('modal-closed')]
