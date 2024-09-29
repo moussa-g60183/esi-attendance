@@ -7,15 +7,16 @@ use App\Models\Student;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\On;
 
 
 class AttendancePage extends Component
 {
-
     #[Title('ESI Attendance')]
 
-    public $selectedValue;
+    public $selectedValue = '';
     public $data;
+    public $showAddForm = false;
 
     public function render()
     {
@@ -32,11 +33,12 @@ class AttendancePage extends Component
      * @param mixed $value Selected value of the select element
      * @return void
      */
-    public function updatedSelectedValue($value)
+    #[On('student-added')]
+    public function updatedSelectedValue()
     {
-        $this->data = Student::whereHas('courses', function ($query) use ($value) {
-            $query->where('sigle', $value);
-        })->get();
+        $this->data = Student::whereHas('courses', function ($query) {
+            $query->where('sigle', $this->selectedValue);
+        })->orderBy('matricule')->get();
     }
 
     /**
@@ -51,10 +53,8 @@ class AttendancePage extends Component
         $course->students()->detach($student);
     }
 
-    /**
-     * Add a student to a course students list
-     * Prevent the default handling of the form
-     * @return void
-     */
-    public function addStudent() {}
+    public function toggle()
+    {
+        $this->showAddForm = !$this->showAddForm;
+    }
 }

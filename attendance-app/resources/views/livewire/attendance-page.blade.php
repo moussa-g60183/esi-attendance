@@ -14,7 +14,18 @@
         </select>
     </div>
     <div class="py-4">
-        @if ($data)
+        @if ($selectedValue != '')
+            @if (!$showAddForm)
+                <button wire:click="toggle">Ajouter un étudiant</button>
+            @else
+                <button wire:click="toggle">Fermer le formulaire</button>
+                <livewire:add-student-form :course_id="$selectedValue" wire:ignore />
+            @endif
+        @endif
+
+    </div>
+    <div class="py-4">
+        @if ($data && count($data) >= 1)
             <table class="min-w-full text-sm font-light text-left text-surface">
                 <thead class="font-medium border-b border-neutral-200 dark:border-white/10">
                     <tr>
