@@ -33,6 +33,6 @@ class AttendancePage extends Component
     {
         $this->data = Student::whereHas('courses', function ($query) use ($value) {
             $query->where('sigle', $value);
-        })->get();
+        })->orderBy('matricule')->get();
     }
 }
