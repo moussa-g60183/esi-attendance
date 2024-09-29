@@ -12,7 +12,9 @@ class AddStudentForm extends Component
     public $student_id;
     public function render()
     {
-        $students = Student::all();
+        $students = Student::whereDoesntHave('courses', function ($query) {
+            $query->where('sigle', $this->course_id);
+        })->orderBy('matricule')->get();
         return view('livewire.add-student-form', [
             "students" => $students,
         ]);
@@ -24,6 +26,7 @@ class AddStudentForm extends Component
         $course = Course::findOrFail($this->course_id);
         $course->students()->attach($student);
         $this->dispatch('student-added');
+        $this->student_id = null;
     }
 
     public function closeModal()
