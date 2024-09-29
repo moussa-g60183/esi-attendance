@@ -40,13 +40,20 @@ class AttendancePage extends Component
     }
 
     /**
-     * Delete a student from a course students list
+     * Delete a student from a course students list.
+     * Prevent the default handling of the form
      * @return void
      */
-    public function deleteStudent() {}
+    public function deleteStudent($matricule)
+    {
+        $student = Student::findOrFail($matricule);
+        $course = Course::findOrFail($this->selectedValue);
+        $course->students()->detach($student);
+    }
 
     /**
      * Add a student to a course students list
+     * Prevent the default handling of the form
      * @return void
      */
     public function addStudent() {}
