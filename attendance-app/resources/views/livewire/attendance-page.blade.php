@@ -16,9 +16,8 @@
     <div class="py-4">
         @if ($selectedValue != '')
             @if (!$showAddForm)
-                <button wire:click="toggle">Ajouter un étudiant</button>
+                <button wire:click="toggleModal">Ajouter un étudiant</button>
             @else
-                <button wire:click="toggle">Fermer le formulaire</button>
                 <livewire:add-student-form :course_id="$selectedValue" wire:ignore />
             @endif
         @endif

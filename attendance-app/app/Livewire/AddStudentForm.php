@@ -25,4 +25,9 @@ class AddStudentForm extends Component
         $course->students()->attach($student);
         $this->dispatch('student-added');
     }
+
+    public function closeModal()
+    {
+        $this->dispatch('modal-closed');
+    }
 }

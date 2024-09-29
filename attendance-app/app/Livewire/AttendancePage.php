@@ -53,7 +53,8 @@ class AttendancePage extends Component
         $course->students()->detach($student);
     }
 
-    public function toggle()
+    #[On('modal-closed')]
+    public function toggleModal()
     {
         $this->showAddForm = !$this->showAddForm;
     }
