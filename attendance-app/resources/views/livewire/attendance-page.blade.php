@@ -29,6 +29,12 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $item['matricule'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $item['first_name'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $item['last_name'] }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <form wire:submit="deleteStudent">
+                                    @csrf
+                                    <button class="text-red-500" type="submit">Supprimer</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

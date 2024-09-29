@@ -27,12 +27,27 @@ class AttendancePage extends Component
         ]);
     }
 
-
-
+    /**
+     * Update the data to display depending on the selected value
+     * @param mixed $value Selected value of the select element
+     * @return void
+     */
     public function updatedSelectedValue($value)
     {
         $this->data = Student::whereHas('courses', function ($query) use ($value) {
             $query->where('sigle', $value);
         })->get();
     }
+
+    /**
+     * Delete a student from a course students list
+     * @return void
+     */
+    public function deleteStudent() {}
+
+    /**
+     * Add a student to a course students list
+     * @return void
+     */
+    public function addStudent() {}
 }

@@ -12,7 +12,7 @@
 
 <body class="bg-slate-100">
     <header>
-        <h1 class="text-6xl bg-blue-500 text-white py-4 px-4">ESI Attendance</h1>
+        <h1 class="w-full px-4 py-4 text-6xl text-white bg-blue-500 md:text-2xl">ESI Attendance</h1>
     </header>
     <nav></nav>
     <main>
